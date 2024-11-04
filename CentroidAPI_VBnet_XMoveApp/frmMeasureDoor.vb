@@ -114,9 +114,9 @@ Public Class frmMeasureDoor
     End Function
 
     ''' <summary>
-    ''' 
+    ''' Sends Cycle Stop Command
     ''' </summary>
-    ''' <returns></returns>
+    ''' <returns>ReturnCode</returns>
     Function SendCycleStopCommand()
         If m_pipe IsNot Nothing Then
             If m_pipe.IsConstructed Then
@@ -161,7 +161,7 @@ Public Class frmMeasureDoor
     End Sub
 
     ''' <summary>
-    ''' 
+    ''' This sub handles the cycle start click event
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
@@ -183,7 +183,7 @@ Public Class frmMeasureDoor
     End Sub
 
     ''' <summary>
-    ''' 
+    ''' This sub handles the cycle cancel click event
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
