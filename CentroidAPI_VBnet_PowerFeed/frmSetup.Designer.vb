@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmMeasureDoor
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmSetup
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,11 +20,13 @@ Partial Class frmMeasureDoor
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        GroupBox1 = New GroupBox()
+        FlowLayoutPanel1 = New FlowLayoutPanel()
+        txtFeedrate = New TextBox()
+        lblUnits = New Label()
         tlpButtonContainer = New TableLayoutPanel()
-        gpbMove = New GroupBox()
-        txtDoorMeasurement = New TextBox()
         btnClear = New Button()
         btnEnterDecimal = New Button()
         btnEnter0 = New Button()
@@ -37,16 +39,54 @@ Partial Class frmMeasureDoor
         btnEnter3 = New Button()
         btnEnter2 = New Button()
         btnEnter1 = New Button()
-        picCycleCancel = New PictureBox()
-        picCycleStart = New PictureBox()
-        mnuMain = New MenuStrip()
-        SetupToolStripMenuItem = New ToolStripMenuItem()
+        btnAccept = New Button()
+        btnCancel = New Button()
+        GroupBox1.SuspendLayout()
+        FlowLayoutPanel1.SuspendLayout()
         tlpButtonContainer.SuspendLayout()
-        gpbMove.SuspendLayout()
-        CType(picCycleCancel, ComponentModel.ISupportInitialize).BeginInit()
-        CType(picCycleStart, ComponentModel.ISupportInitialize).BeginInit()
-        mnuMain.SuspendLayout()
         SuspendLayout()
+        ' 
+        ' GroupBox1
+        ' 
+        tlpButtonContainer.SetColumnSpan(GroupBox1, 3)
+        GroupBox1.Controls.Add(FlowLayoutPanel1)
+        GroupBox1.Dock = DockStyle.Fill
+        GroupBox1.Location = New Point(3, 3)
+        GroupBox1.Name = "GroupBox1"
+        GroupBox1.Size = New Size(430, 55)
+        GroupBox1.TabIndex = 0
+        GroupBox1.TabStop = False
+        GroupBox1.Text = "Default Feedrate:"
+        ' 
+        ' FlowLayoutPanel1
+        ' 
+        FlowLayoutPanel1.Controls.Add(txtFeedrate)
+        FlowLayoutPanel1.Controls.Add(lblUnits)
+        FlowLayoutPanel1.Dock = DockStyle.Fill
+        FlowLayoutPanel1.Location = New Point(3, 19)
+        FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        FlowLayoutPanel1.Size = New Size(424, 33)
+        FlowLayoutPanel1.TabIndex = 3
+        ' 
+        ' txtFeedrate
+        ' 
+        txtFeedrate.Dock = DockStyle.Bottom
+        txtFeedrate.Font = New Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point)
+        txtFeedrate.Location = New Point(3, 3)
+        txtFeedrate.Name = "txtFeedrate"
+        txtFeedrate.Size = New Size(277, 30)
+        txtFeedrate.TabIndex = 2
+        ' 
+        ' lblUnits
+        ' 
+        lblUnits.AutoSize = True
+        lblUnits.Dock = DockStyle.Right
+        lblUnits.Location = New Point(286, 0)
+        lblUnits.Name = "lblUnits"
+        lblUnits.Size = New Size(102, 36)
+        lblUnits.TabIndex = 1
+        lblUnits.Text = "Inches Per Minute"
+        lblUnits.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' tlpButtonContainer
         ' 
@@ -54,8 +94,8 @@ Partial Class frmMeasureDoor
         tlpButtonContainer.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333244F))
         tlpButtonContainer.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333359F))
         tlpButtonContainer.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333359F))
-        tlpButtonContainer.Controls.Add(gpbMove, 0, 0)
         tlpButtonContainer.Controls.Add(btnClear, 2, 4)
+        tlpButtonContainer.Controls.Add(GroupBox1, 0, 0)
         tlpButtonContainer.Controls.Add(btnEnterDecimal, 1, 4)
         tlpButtonContainer.Controls.Add(btnEnter0, 0, 4)
         tlpButtonContainer.Controls.Add(btnEnter9, 2, 3)
@@ -67,7 +107,7 @@ Partial Class frmMeasureDoor
         tlpButtonContainer.Controls.Add(btnEnter3, 2, 1)
         tlpButtonContainer.Controls.Add(btnEnter2, 1, 1)
         tlpButtonContainer.Controls.Add(btnEnter1, 0, 1)
-        tlpButtonContainer.Location = New Point(15, 32)
+        tlpButtonContainer.Location = New Point(13, 12)
         tlpButtonContainer.Margin = New Padding(4, 3, 4, 3)
         tlpButtonContainer.Name = "tlpButtonContainer"
         tlpButtonContainer.RowCount = 5
@@ -77,29 +117,7 @@ Partial Class frmMeasureDoor
         tlpButtonContainer.RowStyles.Add(New RowStyle(SizeType.Percent, 21.3754635F))
         tlpButtonContainer.RowStyles.Add(New RowStyle(SizeType.Percent, 21.3754635F))
         tlpButtonContainer.Size = New Size(436, 426)
-        tlpButtonContainer.TabIndex = 1
-        ' 
-        ' gpbMove
-        ' 
-        tlpButtonContainer.SetColumnSpan(gpbMove, 3)
-        gpbMove.Controls.Add(txtDoorMeasurement)
-        gpbMove.Dock = DockStyle.Fill
-        gpbMove.Location = New Point(3, 3)
-        gpbMove.Name = "gpbMove"
-        gpbMove.Size = New Size(430, 55)
-        gpbMove.TabIndex = 4
-        gpbMove.TabStop = False
-        gpbMove.Text = "Move to X Position"
-        ' 
-        ' txtDoorMeasurement
-        ' 
-        txtDoorMeasurement.Dock = DockStyle.Bottom
-        txtDoorMeasurement.Font = New Font("Cascadia Mono", 14.25F, FontStyle.Regular, GraphicsUnit.Point)
-        txtDoorMeasurement.Location = New Point(3, 22)
-        txtDoorMeasurement.Margin = New Padding(4, 3, 4, 3)
-        txtDoorMeasurement.Name = "txtDoorMeasurement"
-        txtDoorMeasurement.Size = New Size(424, 30)
-        txtDoorMeasurement.TabIndex = 2
+        tlpButtonContainer.TabIndex = 2
         ' 
         ' btnClear
         ' 
@@ -245,87 +263,64 @@ Partial Class frmMeasureDoor
         btnEnter1.Text = "1"
         btnEnter1.UseVisualStyleBackColor = True
         ' 
-        ' picCycleCancel
+        ' btnAccept
         ' 
-        picCycleCancel.Image = My.Resources.Resources.cycle_cancel
-        picCycleCancel.Location = New Point(13, 469)
-        picCycleCancel.Margin = New Padding(4, 3, 4, 3)
-        picCycleCancel.Name = "picCycleCancel"
-        picCycleCancel.Size = New Size(140, 140)
-        picCycleCancel.SizeMode = PictureBoxSizeMode.Zoom
-        picCycleCancel.TabIndex = 2
-        picCycleCancel.TabStop = False
+        btnAccept.Location = New Point(143, 444)
+        btnAccept.Name = "btnAccept"
+        btnAccept.Size = New Size(150, 42)
+        btnAccept.TabIndex = 15
+        btnAccept.Text = "Accept"
+        btnAccept.UseVisualStyleBackColor = True
         ' 
-        ' picCycleStart
+        ' btnCancel
         ' 
-        picCycleStart.Image = My.Resources.Resources.cycle_start
-        picCycleStart.Location = New Point(312, 469)
-        picCycleStart.Margin = New Padding(4, 3, 4, 3)
-        picCycleStart.Name = "picCycleStart"
-        picCycleStart.Size = New Size(140, 140)
-        picCycleStart.SizeMode = PictureBoxSizeMode.Zoom
-        picCycleStart.TabIndex = 3
-        picCycleStart.TabStop = False
+        btnCancel.Location = New Point(299, 444)
+        btnCancel.Name = "btnCancel"
+        btnCancel.Size = New Size(150, 42)
+        btnCancel.TabIndex = 16
+        btnCancel.Text = "Cancel"
+        btnCancel.UseVisualStyleBackColor = True
         ' 
-        ' mnuMain
-        ' 
-        mnuMain.Items.AddRange(New ToolStripItem() {SetupToolStripMenuItem})
-        mnuMain.Location = New Point(0, 0)
-        mnuMain.Name = "mnuMain"
-        mnuMain.Size = New Size(465, 24)
-        mnuMain.TabIndex = 4
-        mnuMain.Text = "MenuStrip1"
-        ' 
-        ' SetupToolStripMenuItem
-        ' 
-        SetupToolStripMenuItem.Name = "SetupToolStripMenuItem"
-        SetupToolStripMenuItem.Size = New Size(49, 20)
-        SetupToolStripMenuItem.Text = "Setup"
-        ' 
-        ' frmMeasureDoor
+        ' frmSetup
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(465, 619)
-        Controls.Add(picCycleStart)
-        Controls.Add(picCycleCancel)
+        ClientSize = New Size(461, 498)
+        Controls.Add(btnCancel)
+        Controls.Add(btnAccept)
         Controls.Add(tlpButtonContainer)
-        Controls.Add(mnuMain)
-        FormBorderStyle = FormBorderStyle.FixedDialog
-        MainMenuStrip = mnuMain
-        Margin = New Padding(4, 3, 4, 3)
+        FormBorderStyle = FormBorderStyle.FixedToolWindow
         MaximizeBox = False
-        MinimizeBox = False
-        Name = "frmMeasureDoor"
+        Name = "frmSetup"
         StartPosition = FormStartPosition.CenterParent
-        Text = "Power Feed"
+        Text = "Power Feed App - Setup"
+        GroupBox1.ResumeLayout(False)
+        FlowLayoutPanel1.ResumeLayout(False)
+        FlowLayoutPanel1.PerformLayout()
         tlpButtonContainer.ResumeLayout(False)
-        gpbMove.ResumeLayout(False)
-        gpbMove.PerformLayout()
-        CType(picCycleCancel, ComponentModel.ISupportInitialize).EndInit()
-        CType(picCycleStart, ComponentModel.ISupportInitialize).EndInit()
-        mnuMain.ResumeLayout(False)
-        mnuMain.PerformLayout()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
+
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents lblUnits As Label
     Friend WithEvents tlpButtonContainer As TableLayoutPanel
-    Friend WithEvents btnEnter3 As Button
-    Friend WithEvents btnEnter2 As Button
-    Friend WithEvents btnEnter1 As Button
-    Friend WithEvents btnEnter5 As Button
-    Friend WithEvents btnEnter4 As Button
-    Friend WithEvents btnEnter6 As Button
     Friend WithEvents btnClear As Button
     Friend WithEvents btnEnterDecimal As Button
     Friend WithEvents btnEnter0 As Button
     Friend WithEvents btnEnter9 As Button
     Friend WithEvents btnEnter8 As Button
     Friend WithEvents btnEnter7 As Button
-    Friend WithEvents picCycleCancel As PictureBox
-    Friend WithEvents picCycleStart As PictureBox
-    Friend WithEvents gpbMove As GroupBox
-    Friend WithEvents txtDoorMeasurement As TextBox
-    Friend WithEvents mnuMain As MenuStrip
-    Friend WithEvents SetupToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents btnEnter6 As Button
+    Friend WithEvents btnEnter5 As Button
+    Friend WithEvents btnEnter4 As Button
+    Friend WithEvents btnEnter3 As Button
+    Friend WithEvents btnEnter2 As Button
+    Friend WithEvents btnEnter1 As Button
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents txtFeedrate As TextBox
+    Friend WithEvents btnAccept As Button
+    Friend WithEvents btnCancel As Button
+
+
+
 End Class

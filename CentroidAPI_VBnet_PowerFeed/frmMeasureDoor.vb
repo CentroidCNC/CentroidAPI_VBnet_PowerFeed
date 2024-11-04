@@ -171,7 +171,7 @@ Public Class frmMeasureDoor
             ' get our X value from txtDoorMeasurement.Text as a double
             Dim XVal As Double = CDbl(Me.txtDoorMeasurement.Text)
             ' try to send the move command, if it was successful then clear our input box
-            If SendXMoveCommand(XVal) = CentroidAPI.CNCPipe.ReturnCode.SUCCESS Then
+            If SendXMoveCommand(XVal, My.Settings.dblFeedRate) = CentroidAPI.CNCPipe.ReturnCode.SUCCESS Then
                 Me.txtDoorMeasurement.Clear()
             Else
                 ' if we get any message other than success, then something went wrong. 
@@ -226,5 +226,15 @@ Public Class frmMeasureDoor
             End If
 
         End If
+    End Sub
+
+    Private Sub FileToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub SetupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetupToolStripMenuItem.Click
+        Dim setupFrm As New frmSetup
+        setupFrm.ShowDialog()
+
     End Sub
 End Class
