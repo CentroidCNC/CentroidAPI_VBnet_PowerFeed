@@ -10,4 +10,4 @@ To run this sample application you need:
 
 # Warning: Axis Movement
 
-This application moves the X Axis the amount specified. While testing, please be aware that you machine may move if developing on your CNCPC. 
+This application moves the X Axis the amount specified. While testing, please be aware that your machine may move if you are developing on your CNCPC (The PC connected to the Acorn/AcornSix/Hickory/Allin1DC/Oak CNC Control Board). 
