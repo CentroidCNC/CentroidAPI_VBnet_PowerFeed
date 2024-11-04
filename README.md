@@ -1,4 +1,4 @@
-# CentroidAPI_VBnet_XMoveApp
+# CentroidAPI_VBnet_PowerFeed
 
 This sample application is using .Net framework 6.0, you are welcome to clone the repo and change the .Net Version if you wish.
 
