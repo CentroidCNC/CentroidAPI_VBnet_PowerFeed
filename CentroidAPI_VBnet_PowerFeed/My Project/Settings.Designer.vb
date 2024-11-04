@@ -62,11 +62,11 @@ Namespace My
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Module MySettingsProperty
-        
-        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.CentroidAPI_VBnet_XMoveApp.My.MySettings
+
+        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>
+        Friend ReadOnly Property Settings() As Global.CentroidAPI_VBnet_PowerFeed.My.MySettings
             Get
-                Return Global.CentroidAPI_VBnet_XMoveApp.My.MySettings.Default
+                Return Global.CentroidAPI_VBnet_PowerFeed.My.MySettings.Default
             End Get
         End Property
     End Module

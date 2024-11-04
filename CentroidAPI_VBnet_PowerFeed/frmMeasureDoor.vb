@@ -143,17 +143,17 @@ Public Class frmMeasureDoor
                 ' if we got success then we are connected
                 If ParamTest = CNCPipe.ReturnCode.SUCCESS Then
                     ' set the title bar text to connected to cnc12
-                    ChangeTitleBarText("Connected to CNC12")
+                    ChangeTitleBarText("Power Feed App - Connected to CNC12")
                 ElseIf ParamTest = CNCPipe.ReturnCode.ERROR_PIPE_IS_BROKEN Then
                     ' if the pipe is broken, try to recreate it.
                     m_pipe = New CNCPipe
                 Else
                     ' otherwise assume we are disconnected. 
-                    ChangeTitleBarText("Disconnected from CNC12")
+                    ChangeTitleBarText("Power Feed App - Disconnected from CNC12")
                 End If
             Catch ex As Exception
                 ' if we get an exception when checking then assume we are disconnected
-                ChangeTitleBarText("Disconnected from CNC12")
+                ChangeTitleBarText("Power Feed App - Disconnected from CNC12")
             End Try
             ' sleep for half a second so we don't use up a CPU core
             Threading.Thread.Sleep(500)

@@ -33,7 +33,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.CentroidAPI_VBnet_XMoveApp.frmMeasureDoor
+            Me.MainForm = Global.CentroidAPI_VBnet_PowerFeed.frmMeasureDoor
 
         End Sub
     End Class
