@@ -17,7 +17,7 @@ Imports CentroidAPI.CNCPipe
 
 Public Class frmMeasureDoor
     ' create pipe
-    Dim CNCPipeManager As clsPipeManager
+    Dim CNCPipeManager As PipeManager
     ' create thread for monitoring if cnc12 is running
     Dim cnc12_isRunning_thread As Threading.Thread
 
@@ -32,7 +32,7 @@ Public Class frmMeasureDoor
         ' Add any initialization after the InitializeComponent() call.
 
         ' initialize pipe so we can communicate with CNC12
-        CNCPipeManager = New clsPipeManager()
+        CNCPipeManager = New PipeManager()
     End Sub
 
     ''' <summary>
@@ -146,7 +146,7 @@ Public Class frmMeasureDoor
                     ChangeTitleBarText("Power Feed App - Connected to CNC12")
                 ElseIf ParamTest = CNCPipe.ReturnCode.ERROR_PIPE_IS_BROKEN Then
                     ' if the pipe is broken, try to recreate it.
-                    CNCPipeManager = New clsPipeManager
+                    CNCPipeManager = New PipeManager
                 Else
                     ' otherwise assume we are disconnected. 
                     ChangeTitleBarText("Power Feed App - Disconnected from CNC12")
