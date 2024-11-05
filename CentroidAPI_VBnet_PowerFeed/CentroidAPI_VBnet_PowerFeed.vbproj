@@ -8,7 +8,7 @@
     <MyType>WindowsForms</MyType>
     <Platforms>AnyCPU;x64</Platforms>
     <ImportedNamespaces>CentroidAPI=False,System.Data=False,System.Drawing=False,System.Windows.Forms=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,CentroidAPI_VBnet_XMoveApp=True</ImportedNamespaces>
-    <ApplicationIcon>door.ico</ApplicationIcon>
+    <ApplicationIcon>power_feed_icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="door.ico" />
+    <Content Include="power_feed_icon.ico" />
   </ItemGroup>
 
   <ItemGroup>

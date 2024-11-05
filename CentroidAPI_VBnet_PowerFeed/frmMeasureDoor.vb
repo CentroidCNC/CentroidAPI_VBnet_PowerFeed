@@ -17,7 +17,7 @@ Imports CentroidAPI.CNCPipe
 
 Public Class frmMeasureDoor
     ' create pipe
-    Dim m_pipe As CNCPipe
+    Dim CNCPipeManager As clsPipeManager
     ' create thread for monitoring if cnc12 is running
     Dim cnc12_isRunning_thread As Threading.Thread
 
@@ -32,7 +32,7 @@ Public Class frmMeasureDoor
         ' Add any initialization after the InitializeComponent() call.
 
         ' initialize pipe so we can communicate with CNC12
-        m_pipe = New CentroidAPI.CNCPipe
+        CNCPipeManager = New clsPipeManager()
     End Sub
 
     ''' <summary>
@@ -42,8 +42,8 @@ Public Class frmMeasureDoor
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub frmMeasureDoor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If m_pipe IsNot Nothing Then
-            If Not m_pipe.IsConstructed Then
+        If CNCPipeManager.Pipe IsNot Nothing Then
+            If Not CNCPipeManager.Pipe.IsConstructed Then
                 MessageBox.Show("Could not connect to CNC12. Please make sure CNC12 is running before using this application.", "Could not connect to CNC12")
                 Application.Exit()
             End If
@@ -100,11 +100,11 @@ Public Class frmMeasureDoor
     ''' <returns></returns>
     Function SendXMoveCommand(ByVal xDistance As Double, Optional ByVal FeedRate As Double = 50)
         ' check that pipe is initialized
-        If m_pipe IsNot Nothing Then
+        If CNCPipeManager.Pipe IsNot Nothing Then
             ' then check that it is constructed
-            If m_pipe.IsConstructed Then
+            If CNCPipeManager.Pipe.IsConstructed Then
                 ' reference to Job class
-                Dim cmd As New CentroidAPI.CNCPipe.Job(m_pipe)
+                Dim cmd As New CentroidAPI.CNCPipe.Job(CNCPipeManager.Pipe)
                 ' return the result of the command after building the command and sending it to cnc12
                 Return cmd.RunCommand("G1 X" & xDistance & " F" & FeedRate, "C:/cncm", False)
             End If
@@ -118,9 +118,9 @@ Public Class frmMeasureDoor
     ''' </summary>
     ''' <returns>ReturnCode</returns>
     Function SendCycleStopCommand()
-        If m_pipe IsNot Nothing Then
-            If m_pipe.IsConstructed Then
-                Dim cmd As New CentroidAPI.CNCPipe.Job(m_pipe)
+        If CNCPipeManager.Pipe IsNot Nothing Then
+            If CNCPipeManager.Pipe.IsConstructed Then
+                Dim cmd As New CentroidAPI.CNCPipe.Job(CNCPipeManager.Pipe)
                 Return cmd.CancelExecution()
             End If
         End If
@@ -138,7 +138,7 @@ Public Class frmMeasureDoor
                 ' we are testing if we are connected to CNC12 by checking if Parameter 1 has any value.
                 ' If we successfully grab the value, we are connected
                 Dim Param1Val As Double = 0
-                Dim Param As New CentroidAPI.CNCPipe.Parameter(m_pipe)
+                Dim Param As New CentroidAPI.CNCPipe.Parameter(CNCPipeManager.Pipe)
                 Dim ParamTest As CentroidAPI.CNCPipe.ReturnCode = Param.GetMachineParameterValue(1, Param1Val)
                 ' if we got success then we are connected
                 If ParamTest = CNCPipe.ReturnCode.SUCCESS Then
@@ -146,7 +146,7 @@ Public Class frmMeasureDoor
                     ChangeTitleBarText("Power Feed App - Connected to CNC12")
                 ElseIf ParamTest = CNCPipe.ReturnCode.ERROR_PIPE_IS_BROKEN Then
                     ' if the pipe is broken, try to recreate it.
-                    m_pipe = New CNCPipe
+                    CNCPipeManager = New clsPipeManager
                 Else
                     ' otherwise assume we are disconnected. 
                     ChangeTitleBarText("Power Feed App - Disconnected from CNC12")
@@ -228,12 +228,13 @@ Public Class frmMeasureDoor
         End If
     End Sub
 
-    Private Sub FileToolStripMenuItem_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
+    ''' <summary>
+    ''' Sub for opening frmSetup as a dialog. 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub SetupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetupToolStripMenuItem.Click
-        Dim setupFrm As New frmSetup
+        Dim setupFrm As New frmSetup(CNCPipeManager.Pipe)
         setupFrm.ShowDialog()
 
     End Sub

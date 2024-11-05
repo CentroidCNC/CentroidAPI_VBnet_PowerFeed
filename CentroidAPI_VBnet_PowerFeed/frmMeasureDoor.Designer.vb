@@ -22,6 +22,7 @@ Partial Class frmMeasureDoor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMeasureDoor))
         tlpButtonContainer = New TableLayoutPanel()
         gpbMove = New GroupBox()
         txtDoorMeasurement = New TextBox()
@@ -41,11 +42,13 @@ Partial Class frmMeasureDoor
         picCycleStart = New PictureBox()
         mnuMain = New MenuStrip()
         SetupToolStripMenuItem = New ToolStripMenuItem()
+        PictureBox1 = New PictureBox()
         tlpButtonContainer.SuspendLayout()
         gpbMove.SuspendLayout()
         CType(picCycleCancel, ComponentModel.ISupportInitialize).BeginInit()
         CType(picCycleStart, ComponentModel.ISupportInitialize).BeginInit()
         mnuMain.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' tlpButtonContainer
@@ -282,16 +285,28 @@ Partial Class frmMeasureDoor
         SetupToolStripMenuItem.Size = New Size(49, 20)
         SetupToolStripMenuItem.Text = "Setup"
         ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Image = My.Resources.Resources.PowerFeed
+        PictureBox1.Location = New Point(160, 469)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(145, 138)
+        PictureBox1.SizeMode = PictureBoxSizeMode.Zoom
+        PictureBox1.TabIndex = 5
+        PictureBox1.TabStop = False
+        ' 
         ' frmMeasureDoor
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(465, 619)
+        Controls.Add(PictureBox1)
         Controls.Add(picCycleStart)
         Controls.Add(picCycleCancel)
         Controls.Add(tlpButtonContainer)
         Controls.Add(mnuMain)
         FormBorderStyle = FormBorderStyle.FixedDialog
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = mnuMain
         Margin = New Padding(4, 3, 4, 3)
         MaximizeBox = False
@@ -306,6 +321,7 @@ Partial Class frmMeasureDoor
         CType(picCycleStart, ComponentModel.ISupportInitialize).EndInit()
         mnuMain.ResumeLayout(False)
         mnuMain.PerformLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -328,4 +344,5 @@ Partial Class frmMeasureDoor
     Friend WithEvents txtDoorMeasurement As TextBox
     Friend WithEvents mnuMain As MenuStrip
     Friend WithEvents SetupToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PictureBox1 As PictureBox
 End Class
