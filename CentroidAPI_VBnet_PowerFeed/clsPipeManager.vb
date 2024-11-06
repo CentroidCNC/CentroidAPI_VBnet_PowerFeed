@@ -91,9 +91,6 @@ Public Class PipeManager
                 Case CNCPipe.ReturnCode.ERROR_CLIENT_LOCKED
                     ' client locked means we are still connected but the client is locked, don't treat this as a disconnection
                     Return True
-                Case CNCPipe.ReturnCode.ERROR_SEND_COMMAND
-
-                Case CNCPipe.ReturnCode.ERROR_SAVE_CONFIGURATION
                 Case Else
                     ' Any other error means disconnection
                     Return False
