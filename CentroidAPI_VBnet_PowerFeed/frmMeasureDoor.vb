@@ -106,7 +106,7 @@ Public Class frmMeasureDoor
                 ' reference to Job class
                 Dim cmd As New CentroidAPI.CNCPipe.Job(CNCPipeManager.Pipe)
                 ' return the result of the command after building the command and sending it to cnc12
-                Return cmd.RunCommand("G1 X" & xDistance & " F" & FeedRate, "C:/cncm", False)
+                Return cmd.RunCommand("G1 X" & xDistance & " F" & FeedRate, CNCPipeManager.GetCNC12WorkingDirectory, False)
             End If
         End If
         ' if we failed, send back an unknown error
@@ -236,6 +236,5 @@ Public Class frmMeasureDoor
     Private Sub SetupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetupToolStripMenuItem.Click
         Dim setupFrm As New frmSetup(CNCPipeManager.Pipe)
         setupFrm.ShowDialog()
-
     End Sub
 End Class
