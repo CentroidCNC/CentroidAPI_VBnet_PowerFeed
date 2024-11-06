@@ -1,6 +1,4 @@
-﻿Imports CentroidAPI.CNCPipe.State
-
-'****************************************************************************
+﻿'****************************************************************************
 '
 ' Title:        frmSetup.vb
 ' Author(s):    Jacob Holes
@@ -9,10 +7,11 @@
 '
 ' Environment/platform  ( Windows 10/11, Visual Basic .net)
 '
-' Last Update:  11-04-24 - JDH - Added header and comments
+' Prior Update: 11-04-24 - JDH - Added header and comments
 ' Prior Update: 11-04-24 - JDH - Created frmSetup, built form, added logic
 '****************************************************************************
 
+Imports CentroidAPI.CNCPipe.State
 
 Class frmSetup
     ' create pipe
@@ -65,6 +64,7 @@ Class frmSetup
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        ' clear the text
         Me.txtFeedrate.Clear()
     End Sub
 
@@ -88,6 +88,7 @@ Class frmSetup
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        ' close this form
         Me.Close()
     End Sub
     ''' <summary>

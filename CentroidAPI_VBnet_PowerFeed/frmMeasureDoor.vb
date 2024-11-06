@@ -1,8 +1,4 @@
-﻿Imports System.Threading
-Imports CentroidAPI
-Imports CentroidAPI.CNCPipe
-
-'****************************************************************************
+﻿'****************************************************************************
 '
 ' Title:        frmMeasureDoor.vb
 ' Author(s):    Jacob Holes
@@ -11,10 +7,15 @@ Imports CentroidAPI.CNCPipe
 '
 ' Environment/platform  ( Windows 10/11, Visual Basic .net)
 '
+' Last Update:  11-06-24 - JDH - Simplified ConnectedToCNC12 logic
+' Prior Update: 11-05-24 - JDH - Added PipeManager, frmSetup logic
 ' Last Update:  11-1-24 - JDH - Added error handling
 ' Prior Update: 10-31-24 - JDH - Created Project and Solution, added Form, populated form with buttons, wrote logic for X move and Cycle Cancel
 '****************************************************************************
 
+Imports System.Threading
+Imports CentroidAPI
+Imports CentroidAPI.CNCPipe
 Public Class frmMeasureDoor
     ' create pipe
     Dim CNCPipeManager As PipeManager

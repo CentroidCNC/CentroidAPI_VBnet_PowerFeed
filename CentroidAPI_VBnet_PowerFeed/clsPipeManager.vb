@@ -7,9 +7,11 @@
 '
 ' Environment/platform  ( Windows 10/11, Visual Basic .net)
 '
-' Last Update:  11-05-24 - JDH - Added header and comments
-' Prior Update: 11-04-24 - JDH - Created clsPipeManager
+' Last Update:  11-06-24 - JDH - Added GetCNC12WorkingDirectory() 
+' Prior Update: 11-05-24 - JDH - Added header and comments
+' Prior Update: 11-04-24 - JDH - Created clsPipeManager, added Pipe and GetCNC12WorkingDirectory()
 '****************************************************************************
+
 Imports System.IO
 
 Public Class PipeManager
@@ -69,11 +71,14 @@ Public Class PipeManager
     End Function
 
     ''' <summary>
-    ''' Checks the connection status of the CNC12 pipe.
+    ''' Checks the connection status of the CNC12 pipe and tries to recreate it when it fails. 
     ''' </summary>
     ''' <returns>True if connected to CNC12 Pipe; False otherwise.</returns>
     Public Function ConnectedToCNC12() As Boolean
-        ' IMPORTANT: On Error Resume Next tells the compiler to ignore errors, be careful as it may cause unintended side effects
+        ' IMPORTANT: On Error Resume Next tells the compiler to ignore errors, be careful as it may cause unintended side effects.
+        ' A Try Catch would be better here but the debugger breaks on errors inside of the try catch and this bypasses that
+        ' Since param.GetMachineParameterValue(1, paramValue) will cause an 'object reference not set to instance of an object'
+        ' error when called on a dead pipe. 
         On Error Resume Next
         ' Check if the pipe exists and is constructed
         If m_pipe IsNot Nothing AndAlso m_pipe.IsConstructed Then
