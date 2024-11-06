@@ -67,4 +67,45 @@ Public Class PipeManager
         Next
         Return "Unknown"
     End Function
+
+    ''' <summary>
+    ''' Checks the connection status of the CNC12 pipe.
+    ''' </summary>
+    ''' <returns>True if connected to CNC12 Pipe; False otherwise.</returns>
+    Public Function ConnectedToCNC12() As Boolean
+        ' IMPORTANT: On Error Resume Next tells the compiler to ignore errors, be careful as it may cause unintended side effects
+        On Error Resume Next
+        ' Check if the pipe exists and is constructed
+        If m_pipe IsNot Nothing AndAlso m_pipe.IsConstructed Then
+            Dim paramValue As Double = 0
+            Dim param As New CentroidAPI.CNCPipe.Parameter(m_pipe)
+            Dim returnCode As CentroidAPI.CNCPipe.ReturnCode = param.GetMachineParameterValue(1, paramValue)
+
+            Select Case returnCode
+                Case CNCPipe.ReturnCode.SUCCESS
+                    ' Successfully connected to CNC12
+                    Return True
+                Case CNCPipe.ReturnCode.ERROR_PIPE_IS_BROKEN
+                    ' Recreate the pipe if it is broken
+                    m_pipe = New CentroidAPI.CNCPipe()
+                Case CNCPipe.ReturnCode.ERROR_CLIENT_LOCKED
+                    ' client locked means we are still connected but the client is locked, don't treat this as a disconnection
+                    Return True
+                Case CNCPipe.ReturnCode.ERROR_SEND_COMMAND
+
+                Case CNCPipe.ReturnCode.ERROR_SAVE_CONFIGURATION
+                Case Else
+                    ' Any other error means disconnection
+                    Return False
+            End Select
+        Else
+            ' Pipe is not constructed; try to recreate it
+            m_pipe = New CentroidAPI.CNCPipe()
+        End If
+
+
+        ' Return false if connection is not established
+        Return False
+    End Function
+
 End Class

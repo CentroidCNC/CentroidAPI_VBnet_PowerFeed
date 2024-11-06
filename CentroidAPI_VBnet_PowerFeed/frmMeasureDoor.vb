@@ -42,11 +42,9 @@ Public Class frmMeasureDoor
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub frmMeasureDoor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If CNCPipeManager.Pipe IsNot Nothing Then
-            If Not CNCPipeManager.Pipe.IsConstructed Then
-                MessageBox.Show("Could not connect to CNC12. Please make sure CNC12 is running before using this application.", "Could not connect to CNC12")
-                Application.Exit()
-            End If
+        If Not CNCPipeManager.ConnectedToCNC12 Then
+            MessageBox.Show("Could not connect to CNC12. Please make sure CNC12 is running before using this application.", "Could not connect to CNC12")
+            Application.Exit()
         End If
 
         ' create new thread that calls IsCNC12Running
@@ -100,14 +98,11 @@ Public Class frmMeasureDoor
     ''' <returns></returns>
     Function SendXMoveCommand(ByVal xDistance As Double, Optional ByVal FeedRate As Double = 50)
         ' check that pipe is initialized
-        If CNCPipeManager.Pipe IsNot Nothing Then
-            ' then check that it is constructed
-            If CNCPipeManager.Pipe.IsConstructed Then
-                ' reference to Job class
-                Dim cmd As New CentroidAPI.CNCPipe.Job(CNCPipeManager.Pipe)
-                ' return the result of the command after building the command and sending it to cnc12
-                Return cmd.RunCommand("G1 X" & xDistance & " F" & FeedRate, CNCPipeManager.GetCNC12WorkingDirectory, False)
-            End If
+        If CNCPipeManager.ConnectedToCNC12 Then
+            ' reference to Job class
+            Dim cmd As New CentroidAPI.CNCPipe.Job(CNCPipeManager.Pipe)
+            ' return the result of the command after building the command and sending it to cnc12
+            Return cmd.RunCommand("G1 X" & xDistance & " F" & FeedRate, CNCPipeManager.GetCNC12WorkingDirectory, False)
         End If
         ' if we failed, send back an unknown error
         Return CentroidAPI.CNCPipe.ReturnCode.ERROR_UNKNOWN
@@ -118,11 +113,9 @@ Public Class frmMeasureDoor
     ''' </summary>
     ''' <returns>ReturnCode</returns>
     Function SendCycleStopCommand()
-        If CNCPipeManager.Pipe IsNot Nothing Then
-            If CNCPipeManager.Pipe.IsConstructed Then
-                Dim cmd As New CentroidAPI.CNCPipe.Job(CNCPipeManager.Pipe)
-                Return cmd.CancelExecution()
-            End If
+        If CNCPipeManager.ConnectedToCNC12 Then
+            Dim cmd As New CentroidAPI.CNCPipe.Job(CNCPipeManager.Pipe)
+            Return cmd.CancelExecution()
         End If
 
         Return CentroidAPI.CNCPipe.ReturnCode.ERROR_UNKNOWN
@@ -134,27 +127,12 @@ Public Class frmMeasureDoor
     Private Sub IsCNC12Running()
         ' called from a background thread and we want it to continue forever, so while true...
         While True
-            Try
-                ' we are testing if we are connected to CNC12 by checking if Parameter 1 has any value.
-                ' If we successfully grab the value, we are connected
-                Dim Param1Val As Double = 0
-                Dim Param As New CentroidAPI.CNCPipe.Parameter(CNCPipeManager.Pipe)
-                Dim ParamTest As CentroidAPI.CNCPipe.ReturnCode = Param.GetMachineParameterValue(1, Param1Val)
-                ' if we got success then we are connected
-                If ParamTest = CNCPipe.ReturnCode.SUCCESS Then
-                    ' set the title bar text to connected to cnc12
-                    ChangeTitleBarText("Power Feed App - Connected to CNC12")
-                ElseIf ParamTest = CNCPipe.ReturnCode.ERROR_PIPE_IS_BROKEN Then
-                    ' if the pipe is broken, try to recreate it.
-                    CNCPipeManager = New PipeManager
-                Else
-                    ' otherwise assume we are disconnected. 
-                    ChangeTitleBarText("Power Feed App - Disconnected from CNC12")
-                End If
-            Catch ex As Exception
-                ' if we get an exception when checking then assume we are disconnected
+            If CNCPipeManager.ConnectedToCNC12 Then
+                ChangeTitleBarText("Power Feed App - Connected to CNC12")
+            Else
                 ChangeTitleBarText("Power Feed App - Disconnected from CNC12")
-            End Try
+            End If
+
             ' sleep for half a second so we don't use up a CPU core
             Threading.Thread.Sleep(500)
         End While
@@ -224,7 +202,6 @@ Public Class frmMeasureDoor
                 ' this allows the character to be typed
                 e.Handled = False
             End If
-
         End If
     End Sub
 
@@ -234,7 +211,9 @@ Public Class frmMeasureDoor
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub SetupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetupToolStripMenuItem.Click
+        ' create new instance of frmSetup, passing our cnc pipe to it.
         Dim setupFrm As New frmSetup(CNCPipeManager.Pipe)
+        ' show the form as a modal dialog
         setupFrm.ShowDialog()
     End Sub
 End Class
