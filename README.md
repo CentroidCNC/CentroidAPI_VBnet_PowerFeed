@@ -6,8 +6,8 @@ To run this sample application you need:
   1) Centroid CNC12 Installed (https://centroidcnc.com/centroid_diy/centroid_cnc_software_downloads.html)
   2) Visual Studio Installed (https://visualstudio.microsoft.com/vs/community/)
   3) .Net Framework 6 Installed (https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-  4) A CNC Control Board connected to your Development PC
-     * For CNC12 to Run. Offline CNC12 will allow the CNCPipe to be connected but will return "ERROR_CLIENT_LOCKED" when given movement commands)
+  4) (Optional) A CNC Control Board connected to your Development PC
+     * For CNC12 to Run and Operate. Offline CNC12 will allow the CNCPipe to be connected and commands to be executed, however there is no PLC in Offline CNC12 so Skin Events and Movements will succeed but will not occur.)
 
 CentroidAPI Documentation is avalible with every CNC12 install, check your install directory for more info!
   * Mill: C:\cncm
