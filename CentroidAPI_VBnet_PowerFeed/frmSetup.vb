@@ -96,15 +96,18 @@ Class frmSetup
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub frmSetup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' create wrapper for state
         Dim state As New CentroidAPI.CNCPipe.State(m_pipe)
+        ' variable to hold our unit of measurement
         Dim uom As CNCPipe.State.UnitsOfMeasure
+        ' if we had a successful call then
         If state.GetUnitsOfMeasureDro(uom) = CNCPipe.ReturnCode.SUCCESS Then
+            ' check what the unit of measurement is and display it
             If uom = UnitsOfMeasure.INCH_UNITS Then
                 Me.lblUnits.Text = "Inches per minute"
             ElseIf uom = UnitsOfMeasure.METRIC_UNITS Then
                 Me.lblUnits.Text = "Millimeters per minute"
             End If
-
         End If
     End Sub
 End Class
