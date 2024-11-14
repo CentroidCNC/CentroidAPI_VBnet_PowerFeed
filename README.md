@@ -13,7 +13,7 @@ To run this sample application you need:
 CentroidAPI Documentation is avalible with every CNC12 install, check your install directory for more info!
   * Mill: C:\cncm
   * Lathe: C:\cnct
-  * Router: C:\cncr
+  * Router: C:\cncm
   * Plasma: C:\cncm
   * MillDemo: C:\Centroid_Mill_Intercon_Offline
   * LatheDemo: C:\Centroid_Lathe_Intercon_Offline
