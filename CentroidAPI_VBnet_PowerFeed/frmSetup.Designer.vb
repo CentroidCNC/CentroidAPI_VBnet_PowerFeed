@@ -24,7 +24,7 @@ Partial Class frmSetup
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSetup))
         GroupBox1 = New GroupBox()
-        FlowLayoutPanel1 = New FlowLayoutPanel()
+        flpFeedrate = New FlowLayoutPanel()
         txtFeedrate = New TextBox()
         lblUnits = New Label()
         tlpButtonContainer = New TableLayoutPanel()
@@ -43,14 +43,14 @@ Partial Class frmSetup
         btnAccept = New Button()
         btnCancel = New Button()
         GroupBox1.SuspendLayout()
-        FlowLayoutPanel1.SuspendLayout()
+        flpFeedrate.SuspendLayout()
         tlpButtonContainer.SuspendLayout()
         SuspendLayout()
         ' 
         ' GroupBox1
         ' 
         tlpButtonContainer.SetColumnSpan(GroupBox1, 3)
-        GroupBox1.Controls.Add(FlowLayoutPanel1)
+        GroupBox1.Controls.Add(flpFeedrate)
         GroupBox1.Dock = DockStyle.Fill
         GroupBox1.Location = New Point(3, 3)
         GroupBox1.Name = "GroupBox1"
@@ -59,15 +59,15 @@ Partial Class frmSetup
         GroupBox1.TabStop = False
         GroupBox1.Text = "Default Feedrate:"
         ' 
-        ' FlowLayoutPanel1
+        ' flpFeedrate
         ' 
-        FlowLayoutPanel1.Controls.Add(txtFeedrate)
-        FlowLayoutPanel1.Controls.Add(lblUnits)
-        FlowLayoutPanel1.Dock = DockStyle.Fill
-        FlowLayoutPanel1.Location = New Point(3, 19)
-        FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        FlowLayoutPanel1.Size = New Size(424, 33)
-        FlowLayoutPanel1.TabIndex = 3
+        flpFeedrate.Controls.Add(txtFeedrate)
+        flpFeedrate.Controls.Add(lblUnits)
+        flpFeedrate.Dock = DockStyle.Fill
+        flpFeedrate.Location = New Point(3, 19)
+        flpFeedrate.Name = "flpFeedrate"
+        flpFeedrate.Size = New Size(424, 33)
+        flpFeedrate.TabIndex = 3
         ' 
         ' txtFeedrate
         ' 
@@ -297,8 +297,8 @@ Partial Class frmSetup
         StartPosition = FormStartPosition.CenterParent
         Text = "Power Feed App - Setup"
         GroupBox1.ResumeLayout(False)
-        FlowLayoutPanel1.ResumeLayout(False)
-        FlowLayoutPanel1.PerformLayout()
+        flpFeedrate.ResumeLayout(False)
+        flpFeedrate.PerformLayout()
         tlpButtonContainer.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
@@ -318,7 +318,7 @@ Partial Class frmSetup
     Friend WithEvents btnEnter3 As Button
     Friend WithEvents btnEnter2 As Button
     Friend WithEvents btnEnter1 As Button
-    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents flpFeedrate As FlowLayoutPanel
     Friend WithEvents txtFeedrate As TextBox
     Friend WithEvents btnAccept As Button
     Friend WithEvents btnCancel As Button

@@ -16,6 +16,7 @@
 Imports System.Threading
 Imports CentroidAPI
 Imports CentroidAPI.CNCPipe
+Imports CentroidAPI.CNCPipe.Plc
 Public Class frmMeasureDoor
     ' create pipe
     Dim CNCPipeManager As PipeManager
@@ -145,8 +146,8 @@ Public Class frmMeasureDoor
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub picCycleStart_Click(sender As Object, e As EventArgs) Handles picCycleStart.Click
-        ' don't send an empty string as an x value
-        If Me.txtDoorMeasurement.Text.Trim IsNot "" Then
+        ' don't send an empty string as an x value and don't send the command if we're in the middle of a job or command
+        If Me.txtDoorMeasurement.Text.Trim IsNot "" And Not CNCPipeManager.IsRunningJob Then
             ' get our X value from txtDoorMeasurement.Text as a double
             Dim XVal As Double = CDbl(Me.txtDoorMeasurement.Text)
             ' try to send the move command, if it was successful then clear our input box
@@ -158,7 +159,6 @@ Public Class frmMeasureDoor
                 MessageBox.Show("An error has occured...")
             End If
         End If
-
     End Sub
 
     ''' <summary>
